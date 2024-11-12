@@ -58,8 +58,9 @@ export default function Page() {
     //     })
     // }
 
-    typeof window !== 'undefined' && !window.localStorage.getItem('token')
-    window.location.href = '/'
+     if(typeof window !== 'undefined'){
+        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
