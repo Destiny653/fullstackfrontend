@@ -7,8 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
-     
-    const [submit, setSubmit] = useState(false);
+      
     const [data, setData] = useState({});
     const [department, setDepartment] = useState({})
 
@@ -37,8 +36,7 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                alert('User registered successfully');
-                setSubmit(true);
+                alert('User registered successfully'); 
             }
 
         } catch (error) {
@@ -97,7 +95,7 @@ export default function Page() {
                                 </label>
                                 <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
                                     onClick={() => setData({
-                                        department: admin, 
+                                        department: department, 
                                         path: 'departments',
                                         branch: 'create'
                                     })}
