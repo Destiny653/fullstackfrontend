@@ -84,6 +84,10 @@ export default function Page() {
                     <ul className='ul-container font-[600]  w-full bg-[#00000021] text-[#fff] border'>
                         <li className='py-[11px]'>Title</li>
                         <li className='py-[11px]'>Duration</li>
+                        <li className='py-[11px]'>Department</li>
+                        <li className='py-[11px]'>Level</li>
+                        <li className='py-[11px]'>Start date</li>
+                        <li className='py-[11px]'>End date</li>
                         <li className='cursor-pointer py-[11px]'>  Update</li>
                         <li className='cursor-pointer py-[11px]'>Delete</li>
                     </ul>
@@ -94,6 +98,10 @@ export default function Page() {
                                     <ul key={item._id} className='ul-container w-full   bg-[#fff] text-[#000] border'>
                                         <li className='py-[11px]'>{item.title}</li>
                                         <li className='py-[11px]'>{item.duration}</li>
+                                        <li className='py-[11px]'>{item.level.department.department}</li>
+                                        <li className='py-[11px]'>{item.level.level}</li>
+                                        <li className='py-[11px]'>{item.level.level_start_date}</li>
+                                        <li className='py-[11px]'>{item.level.level_end_date}</li>
                                         <Link href={'dashboard/updatecourse/?id=' + item._id}>
                                             <li className='py-[11px] btn-opt-nav' > Update </li>
                                         </Link>
