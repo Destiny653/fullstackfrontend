@@ -86,13 +86,15 @@ export default function Page() {
             })
 
             const request = await response.json()
+            console.log(request.user._id);
+            
 
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 if (role == "Student") {
-                    typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
+                  typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
                     navigation.push('/dashboard/student')
                 }
                 if (role == "Instructor") {
