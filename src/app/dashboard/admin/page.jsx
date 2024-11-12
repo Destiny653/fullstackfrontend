@@ -91,13 +91,15 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                if(role == "Student"){ 
+                if (role == "Student") {
+                    typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
                     navigation.push('/dashboard/student')
                 }
-                if(role == "Instructor"){ 
-                    navigation.push('/dashboard/instructor')
+                if (role == "Instructor") {
+                    typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
+                    navigation.push('/dashboard/department')
                 }
-                alert(request.message); 
+                alert(request.message);
 
             }
 

@@ -47,10 +47,8 @@ export default function Page() {
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
-            } else { 
-                if (data.path == "instructor") {
-                    typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
-                }
+            } else {  
+             
                 alert(request.message);
                     navigation.push('/dashboard/department')
             }
