@@ -36,7 +36,7 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                alert('User registered successfully'); 
+                alert(request.message); 
             }
 
         } catch (error) {
@@ -96,8 +96,8 @@ export default function Page() {
                                 <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
                                     onClick={() => setData({
                                         department: department, 
-                                        path: 'departments',
-                                        branch: 'create'
+                                        branch: 'departments',
+                                        path: 'create'
                                     })}
                                 >
                                     Submit

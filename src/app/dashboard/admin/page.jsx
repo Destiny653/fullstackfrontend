@@ -91,8 +91,8 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                alert('User registered successfully');
-                navigation.push('/dashboard/department')
+                alert(request.message);
+               !data.path == "admin" ? navigation.push('/dashboard/department') : navigation.push('/dashboard/users')
             }
 
         } catch (error) {
