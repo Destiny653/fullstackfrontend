@@ -19,8 +19,8 @@
 .btn-opt-del:hover{
     background-color: #f34c22;
     color: #fff;
-    width: 100px;
-    height: 100%;
+    /* width: 100px; */
+    /* height: 100%; */
 }
 .form-reg input{
     padding: 8px 20px;
