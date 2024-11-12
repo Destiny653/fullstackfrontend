@@ -10,6 +10,7 @@ export default function Page() {
      
     const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
+    const [department, setDepartment] = useState({})
 
 
     if (typeof window !== 'undefined') {
@@ -84,8 +85,8 @@ export default function Page() {
                                 <label htmlFor="options">
                                     <span className='text-[#000]'>Department</span>
                                     <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
-                                        value={admin}
-                                        onChange={(e) => setAdmin(e.target.value)}
+                                        value={department}
+                                        onChange={(e) => setDepartment(e.target.value)}
                                     >
                                         <option value="" disabled>Select department</option>
                                         <option value="Web developement">Web developement</option>

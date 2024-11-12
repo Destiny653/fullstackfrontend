@@ -5,6 +5,7 @@ import '../gentem.css';
 import { IoMdAdd } from "react-icons/io";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
     const [firstName, setFirstName] = useState('');
@@ -19,6 +20,7 @@ export default function Page() {
     const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
+    const navigation = useRouter()
     // const [register, setRegister] = useState({
     //     first_name: '',
     //     last_name: '',
@@ -58,13 +60,13 @@ export default function Page() {
     //     })
     // }
 
-     if(typeof window !== 'undefined'){
-        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
-     }
+    //  if(typeof window !== 'undefined'){
+    //     !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+    //  }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        window.localStorage.setItem('regemail', email)
+        // window.localStorage.setItem('regemail', email)
 
         console.log('Data', data);
         console.log('Info log', {
@@ -90,7 +92,7 @@ export default function Page() {
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 alert('User registered successfully');
-                setSubmit(true);
+                navigation.push('/dashboard/department')
             }
 
         } catch (error) {
