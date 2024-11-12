@@ -26,7 +26,7 @@ export default function Page() {
             level: window.localStorage.getItem('levelId'),
         }
         try {
-            const response = await fetch('http://localhost:3000/api/courses/update/' + id, {
+            const response = await fetch('https://dashboard-m2bd.onrender.com/api/courses/update/' + id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

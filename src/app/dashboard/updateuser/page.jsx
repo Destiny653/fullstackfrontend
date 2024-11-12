@@ -42,7 +42,7 @@ export default function Page() {
         });
 
         try {
-            const response = await fetch(`http://localhost:3000/api/` + data.branch + '/' + data.path + '/' + id, {
+            const response = await fetch(`https://dashboard-m2bd.onrender.com/api/` + data.branch + '/' + data.path + '/' + id, {
                 method: data.method,
                 headers: {
                     'Content-Type': 'application/json'

@@ -22,7 +22,7 @@ export default function Page() {
             level: window.localStorage.getItem('levelId'),
         }
         try {
-            const response = await fetch('http://localhost:3000/api/courses/create', {
+            const response = await fetch('https://dashboard-m2bd.onrender.com/api/courses/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

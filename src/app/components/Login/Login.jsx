@@ -19,7 +19,7 @@ export default function Login() {
             password: password
         }
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('https://dashboard-m2bd.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,29 +93,8 @@ export default function Login() {
     }
 
     return (
-        <div className='flex w-full h-[100vh]'>
-            <section className='w-[17%] bg-[#ffffff57]'>
-                <Dbtemplate />
-            </section>
-            <section className='w-[83%] bg-black text-[#fff] flex flex-col gap-[10px]'>
-                <Dbnavigation />
-                <section className='box-border px-[30px] flex justify-between items-center'>
-                    <h2 className='text-[#2196f3] font-[600] text-[24px]'>Adim Dashboard</h2>
-                    <div className='flex gap-[20px] justify-evenly'>
-                        <Link href={'/dashboard/admin'}>
-                            <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
-                                <IoMdAdd size={20} />
-                                Add new user
-                            </button>
-                        </Link>
-                        <Link href={'/dashboard/course'}>
-                            <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
-                                <IoMdAdd size={20} />
-                                Add new Course
-                            </button>
-                        </Link>
-                    </div>
-                </section>
+        <div className='flex w-full h-[100vh]'> 
+            <section className='w-[100%] bg-black text-[#fff] flex justify-center items-center'>    
                 <section className='flex w-full flex-col justify-center items-center h-[100vh] box-border p-[px]'>
                     <div className='flex justify-center items-center relative bg-[#fff] h-[500px] w-[900px] rounded-[15px] box-border py-[30px]'>
                         <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>

@@ -20,7 +20,7 @@ export default function Page() {
         e.preventDefault()
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/' + data.path, {
+            const response = await fetch('https://dashboard-m2bd.onrender.com/api/auth/' + data.path, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export default function Page() {
                 setEmail('')
                 setValidate(true)
                 if(confirmPassword && response.ok){
-                    window.location.href = 'http://localhost:3001/dashboard/login'
+                    window.location.href = 'https://dashboard-m2bd.onrender.com/dashboard/login'
                 }
             }
         } catch (error) {
