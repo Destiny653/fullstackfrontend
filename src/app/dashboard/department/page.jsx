@@ -42,8 +42,7 @@ export default function Page() {
                 if(typeof window !== 'undefined'){
                    window.localStorage.setItem("departmentId", request.data._id)
                 }
-                navigation.push('/dashboard/instructor')
-                
+                navigation.push('/dashboard/level')
             }
 
         } catch (error) {
