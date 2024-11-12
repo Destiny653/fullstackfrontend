@@ -35,7 +35,7 @@ export default function Login() {
             localStorage.setItem('token', request.token)
             localStorage.setItem('name', request.user.first_name)
             if(request.token){
-                navigation.push('/dashboard/course')
+                navigation.push('/dashboard/users')
             }
             alert(request.message)
             setSubmit(true)

@@ -106,10 +106,10 @@ export default function Page() {
                                         <li className='py-[11px]'>{item.email}</li>
                                         <li className='py-[11px]'>{item.role}</li>
                                         <Link href={'dashboard/updateuser/?id=' + item._id}>
-                                            <li className='py-[11px] ' onClick={()=>{ 
-                                            }}><button className='btn-opt-nav'>Update</button></li>
+                                            <li className='py-[11px] btn-opt-nav' onClick={()=>{ 
+                                            }}>Update</li>
                                         </Link>
-                                        <li className='py-[11px] ' onClick={() => { deleteUser(); setIduser(item._id) }}> <button className='btn-opt-del'>Delete</button> </li>
+                                        <li className='py-[11px] btn-opt-del' onClick={() => { deleteUser(); setIduser(item._id) }}>Delete</li>
                                     </ul>
                                 )
                             })

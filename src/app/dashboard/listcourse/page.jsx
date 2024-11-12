@@ -10,15 +10,15 @@ export default function Page() {
 
 
     const [data, setData] = useState([])
-    const [iduser, setIduser] = useState('') 
+    const [iduser, setIduser] = useState('')
 
 
     useEffect(() => {
 
-        if(typeof window !== 'undefined'){
-            !window.localStorage.getItem('token')?  window.location.href = '/' : ''
-         }
-         
+        if (typeof window !== 'undefined') {
+            !window.localStorage.getItem('token') ? window.location.href = '/' : ''
+        }
+
         const fetchData = async () => {
             try {
                 const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/get')
@@ -95,9 +95,9 @@ export default function Page() {
                                         <li className='py-[11px]'>{item.title}</li>
                                         <li className='py-[11px]'>{item.duration}</li>
                                         <Link href={'dashboard/updatecourse/?id=' + item._id}>
-                                            <li className='py-[11px]' > <button className=' btn-opt-nav'>Update</button></li>
+                                            <li className='py-[11px] btn-opt-nav' > Update </li>
                                         </Link>
-                                        <li className='py-[11px] ' onClick={() => { deleteUser(); setIduser(item._id) }}><button className='btn-opt-del'>Delete</button></li>
+                                        <li className='py-[11px] btn-opt-del' onClick={() => { deleteUser(); setIduser(item._id) }}> Delete </li>
                                     </ul>
                                 )
                             })
