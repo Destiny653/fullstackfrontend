@@ -66,7 +66,8 @@ export default function Page() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // window.localStorage.setItem('regemail', email)
+        
+       typeof window !== 'undefined' && window.localStorage.setItem('regemail', email)
 
         console.log('Data', data);
         console.log('Info log', {
