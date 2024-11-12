@@ -21,13 +21,13 @@ export default function Page() {
     const department = typeof window !== 'undefined' && window.localStorage.getItem('studentId')
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
 
-    if(!department){
-        navigation.push('/dashboard/department')
-    }
-    
-    if(!instructor){
-        navigation.push('/dashboard/instructor')
-    }
+    // if(!department){
+    //     navigation.push('/dashboard/department')
+    // }
+
+    // if(!instructor){
+    //     navigation.push('/dashboard/instructor')
+    // }
 
 
 
@@ -59,7 +59,7 @@ export default function Page() {
 
         } catch (error) {
             console.error(error);
-            alert('Error occurred', error);
+            alert('Error occurred please provide the neccessary', error);
 
         }
     }
