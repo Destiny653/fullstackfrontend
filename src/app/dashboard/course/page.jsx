@@ -45,6 +45,7 @@ export default function Page() {
             } else {
                 alert('Course added successfully')
                 setCourseTitle('')
+                navigation.push('/dashboard/course')
             }
         } catch (error) {
             console.error(error)
