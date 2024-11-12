@@ -12,8 +12,10 @@ export default function Page() {
     const [duration, setDuration] = useState('');
 
     let urlParams;
-    urlParams = new URLSearchParams(typeof window == 'undefined' && window.location.search);
-    const id = urlParams.get('id')
+    if(typeof window == 'undefined' ){
+        urlParams = new URLSearchParams( window.location.search);
+    }
+        const id = urlParams.get('id')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
