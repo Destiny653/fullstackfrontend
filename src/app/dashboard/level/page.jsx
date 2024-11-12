@@ -18,19 +18,19 @@ export default function Page() {
     const [data, setData] = useState({});
     const navigation = useRouter()
 
-    const department = typeof window !== 'undefined' && window.localStorage.getItem('studentId')
+    const department = typeof window !== 'undefined' && window.localStorage.getItem('departmentId')
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
 
     console.log( 'DI', department, instructor);
     
 
-    // if(!department){
-    //     navigation.push('/dashboard/department')
-    // }
+    if(!department){
+        navigation.push('/dashboard/department')
+    }
 
-    // if(!instructor){
-    //     navigation.push('/dashboard/instructor')
-    // }
+    if(!instructor){
+        navigation.push('/dashboard/instructor')
+    }
 
 
 
