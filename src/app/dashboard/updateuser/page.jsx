@@ -25,7 +25,7 @@ export default function Page() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let urlParams;
-        if(typeof window == 'undefined' ){
+        if(typeof window !== 'undefined' ){
             window.localStorage.setItem('regemail', email)
             urlParams = new URLSearchParams( window.location.search);
         } 

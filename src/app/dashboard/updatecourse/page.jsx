@@ -12,7 +12,7 @@ export default function Page() {
     const [duration, setDuration] = useState('');
 
     let urlParams;
-    if(typeof window == 'undefined' ){
+    if(typeof window !== 'undefined' ){
         urlParams = new URLSearchParams( window.location.search);
     }
         const id = urlParams.get('id')
