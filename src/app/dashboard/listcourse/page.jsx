@@ -83,7 +83,7 @@ export default function Page() {
                 <section className='flex w-full flex-col  h-[100vh] box-border p-[px]'>
                     <ul className='ul-container font-[600]  w-full bg-[#00000021] text-[#fff] border'>
                         <li className='py-[11px]'>Title</li>
-                        <li className='py-[11px]'>Duration</li>
+                        {/* <li className='py-[11px]'>Duration</li> */}
                         <li className='py-[11px]'>Department</li>
                         <li className='py-[11px]'>Level</li>
                         <li className='py-[11px]'>Start date</li>
@@ -97,7 +97,7 @@ export default function Page() {
                                 return (
                                     <ul key={item._id} className='ul-container w-full   bg-[#fff] text-[#000] border'>
                                         <li className='py-[11px]'>{item.title}</li>
-                                        <li className='py-[11px]'>{item.duration}</li>
+                                        {/* <li className='py-[11px]'>{item.duration}</li> */}
                                         <li className='py-[11px]'>{item.level.department.department}</li>
                                         <li className='py-[11px]'>{item.level.level}</li>
                                         <li className='py-[11px]'>{item.level.level_start_date}</li>
