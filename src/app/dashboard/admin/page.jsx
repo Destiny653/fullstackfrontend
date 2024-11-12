@@ -92,10 +92,10 @@ export default function Page() {
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 if(role == "Student"){ 
-                    navigation.push('dashboard/student')
+                    navigation.push('/dashboard/student')
                 }
                 if(role == "Instructor"){ 
-                    navigation.push('dashboard/instructor')
+                    navigation.push('/dashboard/instructor')
                 }
                 alert(request.message); 
 
@@ -109,116 +109,116 @@ export default function Page() {
     }
 
 
-    const handleRole = () => {
-        let selectedRole;
-        switch (role) {
-            case 'Student':
-                selectedRole = role;
-                break;
-            case 'Instructor':
-                selectedRole = role;
-                break;
-            case 'Admin':
-                selectedRole = role;
-                break;
-            default:
-                selectedRole = 'no log';
-        }
+    // const handleRole = () => {
+    //     let selectedRole;
+    //     switch (role) {
+    //         case 'Student':
+    //             selectedRole = role;
+    //             break;
+    //         case 'Instructor':
+    //             selectedRole = role;
+    //             break;
+    //         case 'Admin':
+    //             selectedRole = role;
+    //             break;
+    //         default:
+    //             selectedRole = 'no log';
+    //     }
 
-        if (selectedRole == 'Student') {
-            return (
-                <div className='flex justify-evenly items-center gap-[1px] w-full'>
-                    <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
-                        <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
-                    </section>
-                    <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
-                        <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Student Register</h1>
-                        <label htmlFor="enrollement data">
-                            <span className='text-[#000]'>Enrollement Data</span>
-                            <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="date" id="enrollement data" name="enrollement data" placeholder="Enrollement Data" value={enrollementDate} onChange={(e) => setEnrollementDate(e.target.value)} />
-                        </label>
-                        <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
-                            onClick={() => setData(
-                                {
-                                    enrollement_date: enrollementDate,
-                                    level: window.localStorage.getItem('levelId'),
-                                    email: localStorage.clear('regemail'),
-                                    path: 'student',
-                                    branch: 'users'
-                                }
-                            )}
-                        >
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            )
-        }
-        if (selectedRole == 'Instructor') {
-            return (
-                <div className='flex justify-evenly items-center gap-[1px] w-full'>
-                    <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
-                        <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
-                    </section>
-                    <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/instructor" method='post'>
-                        <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Instructor Register</h1>
-                        <label htmlFor="enrollement data">
-                            <span className='text-[#000]'>Years of experience</span>
-                            <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="number" id="experience" name="number" placeholder="years of experience" value={experience} onChange={(e) => setExperience(e.target.value)} />
-                        </label>
-                        <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
-                            onClick={() => setData({
-                                years_of_experience: experience,
-                                email: localStorage.getItem('regemail'),
-                                path: 'instructor',
-                                branch: 'users'
-                            })}
-                        >
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            )
-        }
-        if (selectedRole == 'Admin') {
-            return (
-                <div className='flex justify-evenly items-center gap-[1px] w-full'>
-                    <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
-                        <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
-                    </section>
-                    <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/admin" method='post'>
-                        <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Admin Register</h1>
-                        <label htmlFor="Phone">
-                            <span className='text-[#000]'>Phone</span>
-                            <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="text" id="phone" name="phone" placeholder="Phone" value={tel} onChange={(e) => setTel(e.target.value)} />
-                        </label>
-                        <label htmlFor="options">
-                            <span className='text-[#000]'>Permission</span>
-                            <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
-                                value={admin}
-                                onChange={(e) => setAdmin(e.target.value)}
-                            >
-                                <option value="" disabled>Select permissionb</option>
-                                <option value="manage_users">Manage courses</option>
-                                <option value="manage_courses">Manage users</option>
-                            </select>
-                        </label>
-                        <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
-                            onClick={() => setData({
-                                tel: tel,
-                                email: localStorage.getItem('regemail'),
-                                permissions: admin,
-                                path: 'admin',
-                                branch: 'users'
-                            })}
-                        >
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            )
-        }
-    }
+    //     if (selectedRole == 'Student') {
+    //         return (
+    //             <div className='flex justify-evenly items-center gap-[1px] w-full'>
+    //                 <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
+    //                     <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
+    //                 </section>
+    //                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
+    //                     <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Student Register</h1>
+    //                     <label htmlFor="enrollement data">
+    //                         <span className='text-[#000]'>Enrollement Data</span>
+    //                         <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="date" id="enrollement data" name="enrollement data" placeholder="Enrollement Data" value={enrollementDate} onChange={(e) => setEnrollementDate(e.target.value)} />
+    //                     </label>
+    //                     <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
+    //                         onClick={() => setData(
+    //                             {
+    //                                 enrollement_date: enrollementDate,
+    //                                 level: window.localStorage.getItem('levelId'),
+    //                                 email: localStorage.clear('regemail'),
+    //                                 path: 'student',
+    //                                 branch: 'users'
+    //                             }
+    //                         )}
+    //                     >
+    //                         Submit
+    //                     </button>
+    //                 </form>
+    //             </div>
+    //         )
+    //     }
+    //     if (selectedRole == 'Instructor') {
+    //         return (
+    //             <div className='flex justify-evenly items-center gap-[1px] w-full'>
+    //                 <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
+    //                     <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
+    //                 </section>
+    //                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/instructor" method='post'>
+    //                     <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Instructor Register</h1>
+    //                     <label htmlFor="enrollement data">
+    //                         <span className='text-[#000]'>Years of experience</span>
+    //                         <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="number" id="experience" name="number" placeholder="years of experience" value={experience} onChange={(e) => setExperience(e.target.value)} />
+    //                     </label>
+    //                     <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
+    //                         onClick={() => setData({
+    //                             years_of_experience: experience,
+    //                             email: localStorage.getItem('regemail'),
+    //                             path: 'instructor',
+    //                             branch: 'users'
+    //                         })}
+    //                     >
+    //                         Submit
+    //                     </button>
+    //                 </form>
+    //             </div>
+    //         )
+    //     }
+    //     if (selectedRole == 'Admin') {
+    //         return (
+    //             <div className='flex justify-evenly items-center gap-[1px] w-full'>
+    //                 <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
+    //                     <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
+    //                 </section>
+    //                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/admin" method='post'>
+    //                     <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Admin Register</h1>
+    //                     <label htmlFor="Phone">
+    //                         <span className='text-[#000]'>Phone</span>
+    //                         <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="text" id="phone" name="phone" placeholder="Phone" value={tel} onChange={(e) => setTel(e.target.value)} />
+    //                     </label>
+    //                     <label htmlFor="options">
+    //                         <span className='text-[#000]'>Permission</span>
+    //                         <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
+    //                             value={admin}
+    //                             onChange={(e) => setAdmin(e.target.value)}
+    //                         >
+    //                             <option value="" disabled>Select permissionb</option>
+    //                             <option value="manage_users">Manage courses</option>
+    //                             <option value="manage_courses">Manage users</option>
+    //                         </select>
+    //                     </label>
+    //                     <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
+    //                         onClick={() => setData({
+    //                             tel: tel,
+    //                             email: localStorage.getItem('regemail'),
+    //                             permissions: admin,
+    //                             path: 'admin',
+    //                             branch: 'users'
+    //                         })}
+    //                     >
+    //                         Submit
+    //                     </button>
+    //                 </form>
+    //             </div>
+    //         )
+    //     }
+    // }
 
     return (
         <div className='flex w-full h-[100vh]'>

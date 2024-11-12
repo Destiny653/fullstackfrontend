@@ -52,7 +52,7 @@ export default function Page() {
                     typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
                 }
                 alert(request.message);
-                    navigation.push('dashboard/department')
+                    navigation.push('/dashboard/department')
             }
 
         } catch (error) {
