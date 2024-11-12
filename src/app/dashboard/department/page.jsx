@@ -37,6 +37,9 @@ export default function Page() {
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 alert(request.message); 
+                if(typeof window !== 'undefined'){
+                   window.localStorage.setItem("departmentId", request.data._id)
+                }
             }
 
         } catch (error) {

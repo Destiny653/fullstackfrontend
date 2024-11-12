@@ -93,6 +93,13 @@ export default function Page() {
             } else {
                 alert(request.message);
                !data.path == "admin" ? navigation.push('/dashboard/department') : navigation.push('/dashboard/users')
+
+               if(data.path == "student"){
+                typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
+               }
+               if(data.path == "instructor"){
+                typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
+               }
             }
 
         } catch (error) {

@@ -6,10 +6,11 @@ import '../gentem.css';
 import Link from 'next/link';
 
 export default function Page() {
-
-    if(typeof window !== 'undefined'){
-        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
-     }
+    let levelId;
+    if (typeof window !== 'undefined') {
+        !window.localStorage.getItem('token') ? window.location.href = '/' : ''
+        levelId = window.localStorage.getItem('levelId')
+    }
 
     const [courseTitle, setCourseTitle] = useState('');
     const [duration, setDuration] = useState('');
@@ -19,7 +20,7 @@ export default function Page() {
         const data = {
             title: courseTitle,
             duration: duration,
-            level: window.localStorage.getItem('levelId'),
+            level: levelId
         }
         try {
             const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/create', {
