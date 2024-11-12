@@ -91,15 +91,15 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
+                if(data.path == "student"){
+                 typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
+                }
+                if(data.path == "instructor"){
+                 typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
+                }
                 alert(request.message);
-               !data.path == "admin" ? navigation.push('/dashboard/department') : navigation.push('/dashboard/users')
+            //    !data.path == "admin" ? navigation.push('/dashboard/department') : navigation.push('/dashboard/users')
 
-               if(data.path == "student"){
-                typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
-               }
-               if(data.path == "instructor"){
-                typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
-               }
             }
 
         } catch (error) {
