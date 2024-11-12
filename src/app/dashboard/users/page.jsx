@@ -8,8 +8,9 @@ import { FaUserCircle } from "react-icons/fa";
 
 
 export default function Page() {
-    typeof window !== 'undefined' && !window.localStorage.getItem('token')
-    window.location.href = '/'
+    if(typeof window !== 'undefined'){
+        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+     }  
 
 
     const [data, setData] = useState([])

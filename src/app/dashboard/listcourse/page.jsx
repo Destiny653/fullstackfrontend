@@ -15,8 +15,10 @@ export default function Page() {
 
     useEffect(() => {
 
-        typeof window !== 'undefined' && !window.localStorage.getItem('token')
-        window.location.href = '/'
+        if(typeof window !== 'undefined'){
+            !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+         }
+         
         const fetchData = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/courses/get')

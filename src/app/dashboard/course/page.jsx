@@ -7,8 +7,9 @@ import Link from 'next/link';
 
 export default function Page() {
 
-    typeof window !== 'undefined' && !window.localStorage.getItem('token')
-    window.location.href = '/'
+    if(typeof window !== 'undefined'){
+        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+     }
 
     const [courseTitle, setCourseTitle] = useState('');
     const [duration, setDuration] = useState('');
