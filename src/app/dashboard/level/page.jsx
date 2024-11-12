@@ -54,7 +54,7 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else { 
-                typeof window == "undefined" &&  window.localStorage.setItem('levelId', request.data._id)  
+                typeof window !== "undefined" &&  window.localStorage.setItem('levelId', request.data._id)  
                 alert(request.message);
                 navigation.push('/dashboard/course')
             }
