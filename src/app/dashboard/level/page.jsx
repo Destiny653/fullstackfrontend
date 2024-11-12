@@ -21,6 +21,14 @@ export default function Page() {
     const department = typeof window !== 'undefined' && window.localStorage.getItem('studentId')
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
 
+    if(!department){
+        navigation.push('/dashboard/department')
+    }
+    
+    if(!instructor){
+        navigation.push('/dashboard/instructor')
+    }
+
 
 
 

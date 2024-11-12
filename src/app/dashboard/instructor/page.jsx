@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dbnavigation, Dbtemplate } from '@/app/components/Dbtemplate/Dbtemplate';
 import '../gentem.css';
 import { IoMdAdd } from "react-icons/io";
@@ -8,20 +8,30 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
-      
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [role, setRole] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [experience, setExperience] = useState('');
+    const [tel, setTel] = useState('');
+    const [enrollementDate, setEnrollementDate] = useState('');
+    const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
-    const [department, setDepartment] = useState({})
+    const [admin, setAdmin] = useState('')
     const navigation = useRouter()
-
-
-    if (typeof window !== 'undefined') {
-        !window.localStorage.getItem('token') ? window.location.href = '/' : ''
-    }
-
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
+        // window.localStorage.setItem('regemail', email)
 
-        console.log('Data', data); 
+        console.log('Data', data);
+        console.log('Info log', {
+            path: data.path,
+            branch: data.branch,
+            data: data,
+            email: email,
+        });
 
         try {
             const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path, {
@@ -37,13 +47,12 @@ export default function Page() {
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
-            } else {
-                alert(request.message); 
-                if(typeof window !== 'undefined'){
-                   window.localStorage.setItem("departmentId", request.data._id)
+            } else { 
+                if (data.path == "instructor") {
+                    typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
                 }
-                navigation.push('/dashboard/instructor')
-                
+                alert(request.message);
+                    navigation.push('dashboard/department')
             }
 
         } catch (error) {
@@ -53,7 +62,8 @@ export default function Page() {
         }
     }
 
- 
+
+
     return (
         <div className='flex w-full h-[100vh]'>
             <section className='w-[17%] bg-[#ffffff57]'>
@@ -84,27 +94,18 @@ export default function Page() {
                             <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
                                 <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
                             </section>
-                            <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] '>
-                                <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Department</h1>
-                               
-                                <label htmlFor="options">
-                                    <span className='text-[#000]'>Department</span>
-                                    <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
-                                        value={department}
-                                        onChange={(e) => setDepartment(e.target.value)}
-                                    >
-                                        <option value="" disabled>Select department</option>
-                                        <option value="Web developement">Web developement</option>
-                                        <option value="Cyber security">Cyber security</option>
-                                        <option value="Digital marketting">Digital marketting</option>
-                                        <option value="Graphic designing">Graphic designing</option>
-                                    </select>
+                            <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/instructor" method='post'>
+                                <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Instructor Register</h1>
+                                <label htmlFor="enrollement data">
+                                    <span className='text-[#000]'>Years of experience</span>
+                                    <input className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' type="number" id="experience" name="number" placeholder="years of experience" value={experience} onChange={(e) => setExperience(e.target.value)} />
                                 </label>
                                 <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
                                     onClick={() => setData({
-                                        department: department, 
-                                        branch: 'departments',
-                                        path: 'create'
+                                        years_of_experience: experience,
+                                        email: localStorage.getItem('regemail'),
+                                        path: 'instructor',
+                                        branch: 'users'
                                     })}
                                 >
                                     Submit

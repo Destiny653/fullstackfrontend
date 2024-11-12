@@ -1,9 +1,10 @@
 'use client'
 import { Dbnavigation, Dbtemplate } from '@/app/components/Dbtemplate/Dbtemplate';
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import '../gentem.css';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
     let levelId;
@@ -12,8 +13,15 @@ export default function Page() {
         levelId = window.localStorage.getItem('levelId')
     }
 
+
     const [courseTitle, setCourseTitle] = useState('');
     const [duration, setDuration] = useState('');
+    const navigation = useRouter()
+
+    if(!levelId){
+        navigation.push('/dashboard/level')
+    }
+ 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
