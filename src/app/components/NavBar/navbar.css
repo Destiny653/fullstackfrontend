@@ -1,0 +1,28 @@
+.nav-link-p{
+    display: flex;
+}
+.nav-link-p li:hover{
+    background-color: #8d5f0b56;
+    color: #fff;
+    padding: 8px;
+    border-radius: 10px;
+}
+.nav-link-b{
+    /* display: none; */
+}
+.nav-link-c{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.nav-menu {
+    display: grid;
+    grid-template-columns:  15% 55% 25%;
+    gap: 2.5%;
+    padding: 9px 2.5%;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.589);
+}

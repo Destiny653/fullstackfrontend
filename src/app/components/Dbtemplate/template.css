@@ -1,0 +1,21 @@
+.nav-items li{
+    padding: 10px 20px; 
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.nav-items li:hover{ 
+    background-color: #0505051e;
+}
+.btn-nav{
+    background-color: #050505;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-nav:hover{
+    background-color: #2196f3;
+    color: white;
+}

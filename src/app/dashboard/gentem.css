@@ -1,0 +1,68 @@
+.btn-opt{
+    background-color: #000;
+}
+.btn-opt,
+.btn-opt-nav,
+.btn-opt-del{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.btn-opt:hover,
+.btn-opt-nav:hover{
+    background-color: #2196f3;
+    color: #fff;
+    width: 100px;
+    height: 100%;
+}
+.btn-opt-del:hover{
+    background-color: #f34c22;
+    color: #fff;
+    width: 100px;
+    height: 100%;
+}
+.form-reg input{
+    padding: 8px 20px;
+    border-radius:10px;
+    border: 1px solid gray;
+    width: 350px;
+    outline: none;
+    color:#000;
+}
+.ul-container { 
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    position: relative;
+    text-align: center;
+}
+
+.ul-container li { 
+    width: 200px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    /* text-wrap: nowrap; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* font-weight: 500; */ 
+}
+.ul-container .profile{ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 20px;
+    padding-left: 30px;
+}
+.ul-container .profile .profile2{
+    display: flex; 
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 70%;
+}
+.ul-container:nth-child(2n){
+    background-color: rgba(255, 255, 255, 0.959);
+}

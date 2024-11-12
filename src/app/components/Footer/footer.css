@@ -1,0 +1,5 @@
+.footer-links-p {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 60px;
+}
