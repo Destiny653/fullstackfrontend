@@ -11,12 +11,12 @@ export default function Page() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
+    const [level, setLevel] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [submit, setSubmit] = useState(false);
+    const [submit, setSubmit] = useState(false); 
     const [data, setData] = useState({});
-    const navigation = useRouter()
+    const navigation = useRouter() 
 
     const department = typeof window !== 'undefined' && window.localStorage.getItem('departmentId')
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
@@ -111,8 +111,8 @@ export default function Page() {
                                 <label htmlFor="options">
                                     <span className='text-[#000]'>Role</span>
                                     <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
-                                        value={role}
-                                        onChange={(e) => setRole(e.target.value)}
+                                        value={level}
+                                        onChange={(e) => setLevel(e.target.value)}
                                     >
                                         <option value="" disabled>Select Role</option>
                                         <option value="Beginner">Beginner</option>
@@ -128,6 +128,7 @@ export default function Page() {
                                     level_end_date: endDate,
                                     instructor: instructor,
                                     department: department,
+                                    level: level,
                                     path: 'create',
                                     branch: 'levels'
                                 })
