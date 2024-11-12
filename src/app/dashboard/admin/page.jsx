@@ -75,7 +75,7 @@ export default function Page() {
         });
 
         try {
-            const response = await fetch(`https://dashboard-m2bd.onrender.com/api/` + data.branch + '/' + data.path, {
+            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

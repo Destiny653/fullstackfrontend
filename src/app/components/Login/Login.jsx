@@ -19,7 +19,7 @@ export default function Login() {
             password: password
         }
         try {
-            const response = await fetch('https://dashboard-m2bd.onrender.com/api/admins/login', {
+            const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/admins/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

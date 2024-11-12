@@ -21,7 +21,7 @@ export default function Page() {
          
         const fetchData = async () => {
             try {
-                const response = await fetch('https://dashboard-m2bd.onrender.com/api/courses/get')
+                const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/get')
                 const request = await response.json()
                 if (!response.ok) {
                     alert(request.message)
