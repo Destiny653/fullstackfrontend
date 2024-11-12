@@ -25,12 +25,13 @@ export default function Page() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let urlParams;
+        let id;
         if(typeof window !== 'undefined' ){
             window.localStorage.setItem('regemail', email)
             urlParams = new URLSearchParams( window.location.search);
+            urlParams?.get('id')
         } 
     
-        const id = urlParams.get('id')
 
         console.log('Data', data);
         console.log('Info log', {
