@@ -49,14 +49,15 @@ export default function Page() {
 
             const request = await response.json()
 
+            
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                alert(request.message);
                 if(typeof window == "undefined"){
                     window.localStorage.setItem('levelId', request.data._id)  
                 }
+                alert(request.message);
                 navigation.push('/dashboard/course')
             }
 
