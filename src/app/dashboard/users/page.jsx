@@ -23,7 +23,7 @@ export default function Page() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/users')
+                const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/users`)
                 const request = await response.json()
                 // console.log('Data fetched', request)
                 // console.log('Data response', response)
@@ -44,7 +44,7 @@ export default function Page() {
 
     const deleteUser = async () => {
         try {
-            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/users/delete/${iduser}`, {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/users/delete/${iduser}`, {
                 method: 'DELETE',
             })
             const request = await response.json()

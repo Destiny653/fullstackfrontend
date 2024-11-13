@@ -42,7 +42,7 @@ export default function Page() {
         });
 
         try {
-            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path + '/' + id, {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/` + data.branch + '/' + data.path + '/' + id, {
                 method: data.method,
                 headers: {
                     'Content-Type': 'application/json'

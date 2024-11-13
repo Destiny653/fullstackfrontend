@@ -21,7 +21,7 @@ export default function Page() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/get')
+                const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/courses/get`)
                 const request = await response.json()
                 if (!response.ok) {
                     alert(request.message)
@@ -39,7 +39,7 @@ export default function Page() {
 
     const deleteUser = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/courses/delete/${iduser}`, {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/courses/delete/${iduser}`, {
                 method: 'DELETE',
             })
             const request = await response.json()

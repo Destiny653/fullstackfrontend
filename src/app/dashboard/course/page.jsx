@@ -31,7 +31,7 @@ export default function Page() {
             level: levelId
         }
         try {
-            const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/create', {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/courses/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

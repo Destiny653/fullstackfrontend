@@ -26,7 +26,7 @@ export default function Page() {
             level: window.localStorage.getItem('levelId'),
         }
         try {
-            const response = await fetch('https://fullstackbackend-1-3kv9.onrender.com/api/courses/update/' + id, {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/courses/update/` + id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
