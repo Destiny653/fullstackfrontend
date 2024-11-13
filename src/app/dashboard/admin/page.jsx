@@ -24,8 +24,8 @@ export default function Page() {
 
     useEffect(() => {
      
-    const localdata = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
+    // const localdata = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('data'))
+    // !localdata.token && navigation.push('/')
 
     }),[]
 
