@@ -20,12 +20,15 @@ export default function Page() {
     const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
+    const [isClient, setIsClient] = useState(false);
     const navigation = useRouter()
 
-        if(typeof !window == 'undefined'){
-            const localdata =  JSON.parse( typeof !window == 'undefined' && localStorage.getItem('data'))
-            !localdata.token && navigation.push('/')
-        } 
+    useEffect(() => {
+        setIsClient(true)
+        const localdata = localStorage.getItem('data')
+        !localdata.token && navigation.push('/')
+    })
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,13 +57,19 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                if (role == "Student") {
-                    typeof !window == 'undefined' && localStorage.setItem('studentId', request.user._id)
-                    navigation.push('/dashboard/student')
+                if (role === "Student" && isClient) {
+                    // Ensure window is defined and safely set localStorage item
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('studentId', request.user._id);
+                        navigation.push('/dashboard/student');
+                    }
                 }
-                if (role == "Instructor") {
-                    typeof !window == 'undefined' && localStorage.setItem('instructorId', request.user._id)
-                    navigation.push('/dashboard/department')
+                if (role === "Instructor" && isClient) {
+                    // Ensure window is defined and safely set localStorage item
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('instructorId', request.user._id)
+                        navigation.push('/dashboard/department')
+                    }
                 }
                 alert(request.message);
 
@@ -72,7 +81,7 @@ export default function Page() {
 
         }
     }
- 
+
 
     return (
         <div className='flex w-full h-[100vh]'>
