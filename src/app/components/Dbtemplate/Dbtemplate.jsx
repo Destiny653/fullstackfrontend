@@ -16,6 +16,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import Link from 'next/link';
 
 export function Dbtemplate() {
+
   return (
     <div className='flex flex-col gap-[32px] relative h-[100%] box-border  py-[10px]'>
       <h1 className='font-[600] text-[20px] text-[#2196f3] text-center'>Course Management</h1>
@@ -82,6 +83,9 @@ export function Dbtemplate() {
 }
 
 export function Dbnavigation() {
+
+  const data = JSON.parse(localStorage.getItem('data'))
+
   return (
     <div className='flex justify-evenly items-center mt-[15px]'>
       <div className='relative w-[50%]'>
@@ -98,12 +102,12 @@ export function Dbnavigation() {
           <span className='absolute bg-[green] px-[5px] text-[10px] py-[0] rounded-full top-[-1px] right-[-10]'>3</span>
         </div>
         <div className='flex justify-center items-center gap-[5px]'>
-          <section className='w-[40px] h-[40px] rounded-full bg-[#fff]'>
-            <Image className='w-[40px] h-[40px] rounded-full' src={''} alt='user' width={500} height={500} />
+          <section className='text-[#000] w-[40px] h-[40px] flex items-center justify-center font-[600] text-[20px] rounded-full bg-[#fff]'> 
+            <span>{data?.name.split("")[0].toUpperCase()}</span>
           </section>
           <section className='flex flex-col'>
-            <strong>Jane Cooper</strong>
-            <span>jane@gmail.com</span>
+            <strong>{data?.name}</strong>
+            <span>{data?.mail}</span>
           </section>
         </div>
       </section>

@@ -10,8 +10,8 @@ import { useRouter } from 'next/navigation'
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [submit, setSubmit] = useState(false)
-    const navigation = useRouter()
+    const [name, setName] = useState(null)
+    const navigation = useRouter() 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = {
@@ -19,26 +19,22 @@ export default function Login() {
             password: password
         }
         try {
-            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/admins/login`, {
+            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/admins/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             })
-            const request = await response.json()
-            console.log("Request data: ", request);
+            const request = await response.json() 
 
             if (!response.ok) {
                 alert(request.message)
+            }else{
+                let user = request.user
+                typeof window !== 'undefined' && window.localStorage.setItem('data', JSON.stringify({name:user.first_name + ' ' + user.last_name , mail:user.email, token:request.token}))
             }
-            localStorage.setItem('token', request.token)
-            localStorage.setItem('name', request.user.first_name)
-            if(request.token){
-                navigation.push('/dashboard/users')
-            }
-            alert(request.message)
-            setSubmit(true)
+            alert(request.message) 
             setEmail('')
             setPassword('')
         } catch (error) {
@@ -46,8 +42,10 @@ export default function Login() {
             alert('Error in registration ' + error)
         }
     }
+    const data = JSON.parse( typeof window !== 'undefined' && localStorage.getItem('data'))
 
-    if (typeof window !== 'undefined' && !window.localStorage.getItem('token') == "") {
+    if ( data?.token) {
+
         return (
             <div className='flex w-full h-[100vh]'>
                 <section className='w-[17%] bg-[#ffffff57]'>
@@ -78,12 +76,12 @@ export default function Login() {
                                 <Image className=' w-full h-full' src={'/images/course.jpg'} alt='course management image' width={400} height={400} />
                             </section>
                             <section className=' flex flex-col gap-[15px] justify-center items-center rounded-[15px] overflow-hidden'>
-                                <div className='w-[200px] h-[200px] flex flex-col gap-[20px] items-center justify-center rounded-full bg-[#2196f3] text-[#fff]'>
+                                <div className='w-[200px] h-[200px] flex flex-col gap-[20px] items-center justify-center rounded-full bg-[#2196f3] text-[#dce2e78a]'>
                                     <h1 className='text-[100px] font-[700]'>
-                                        {typeof window == 'undefined' && window.localStorage.getItem('name')?.split("")[0].toUpperCase()}
+                                        { data?.name.split("")[0].toUpperCase()}
                                     </h1>
                                 </div>
-                                <p className='text-[30px] font-[600] text-[#000]'>Welcome {window.localStorage.getItem('name')}</p>
+                                <p className='text-[24px] font-[600] text-[#000]'>Welcome, {data?.name}</p>
                             </section>
                         </div>
                     </section>
