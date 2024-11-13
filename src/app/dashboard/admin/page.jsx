@@ -21,17 +21,53 @@ export default function Page() {
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
+    // const [register, setRegister] = useState({
+    //     first_name: '',
+    //     last_name: '',
+    //     email: '',
+    //     role: '',
+    //     password: '',
+    //     confirm_password: ''
+    // })
+    // const [admin, setAdmin] = useState({
+    //     tel: '',
+    //     email: ''
+    // })
+    // const [student, setStudent] = useState({
+    //     enrollement_date: '',
+    //     level: '',
+    //     email: ''
+    // })
+    // const [instructor, setInstructor] = useState({
+    //     department: '',
+    //     email: ''
+    // })
 
-        if(typeof window !== 'undefined'){
-            const localdata =  JSON.parse(localStorage.getItem('data'))
-            !localdata.token && navigation.push('/')
-        } 
 
+    // const handleChange =(e)=>{
+    //     const {name,value} = e.target
+    //     setRegister({
+    //         ...register,
+    //         [name]: value
+    //     })
+    //     setStudent({
+    //         ...student,
+    //         [name]:value
+    //     })
+    //     setInstructor({
+    //         ...instructor,
+    //         [name]:value
+    //     })
+    // }
+
+    //  if(typeof window !== 'undefined'){
+    //     !window.localStorage.getItem('token')?  window.location.href = '/' : ''
+    //  }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
+        
+       typeof window !== 'undefined' && window.localStorage.setItem('regemail', email)
 
         console.log('Data', data);
         console.log('Info log', {
@@ -42,7 +78,7 @@ export default function Page() {
         });
 
         try {
-            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path, {
+            const response = await fetch(`${process.env.local.NEXTAUTH_URL}/api/` + data.branch + '/' + data.path, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,18 +87,19 @@ export default function Page() {
             })
 
             const request = await response.json()
-
+            console.log(request.user._id);
+            
 
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 if (role == "Student") {
-                    typeof window !== 'undefined' && localStorage.setItem('studentId', request.user._id)
+                  typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
                     navigation.push('/dashboard/student')
                 }
                 if (role == "Instructor") {
-                    typeof window !== 'undefined' && localStorage.setItem('instructorId', request.user._id)
+                    typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
                     navigation.push('/dashboard/department')
                 }
                 alert(request.message);
@@ -214,62 +251,67 @@ export default function Page() {
                 </section>
                 <section className='flex justify-center items-center h-[100vh]'>
                     <div className='flex justify-center items-center relative bg-[#fff] h-[500px] w-[900px] rounded-[15px] box-border py-[30px]'>
-                        <form onSubmit={handleSubmit} className='form-reg flex flex-col justify-center gap-[6%] items-center w-[800px] h-[100%] box-border px-[20px]'>
-                            <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Register</h1>
-                            <div className='flex justify-center items-center gap-[8%] w-full'>
-                                <label htmlFor="first-name">
-                                    <span className='text-[#000]'>First Name</span>
-                                    <input type="text" id="first-name" name="first-name" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                                </label>
-                                <label htmlFor="last-name">
-                                    <span className='text-[#000]'>Last Name</span>
-                                    <input type="text" id="last-name" name="last-name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                                </label>
-                            </div>
-                            <div className='flex justify-center items-center gap-[8%] w-full'>
-                                <label htmlFor="email">
-                                    <span className='text-[#000]'>Email</span>
-                                    <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                </label>
-                                <label htmlFor="password">
-                                    <span className='text-[#000]'>Password</span>
-                                    <input type="password" id="password" name="password" placeholder="*****" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                                </label>
-                            </div>
-                            <div className='flex justify-center gap-[0%] items-center w-[100%]'>
-                                <label htmlFor="confirm-password">
-                                    <span className='text-[#000]'>Confirm Password</span>
-                                    <input type="password" id="confirm-password" name="confirm-password" placeholder="*****" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
-                                </label>
-                                <label htmlFor="options">
-                                    <span className='text-[#000]'>Role</span>
-                                    <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
-                                        value={role}
-                                        onChange={(e) => setRole(e.target.value)}
+                        {
+                            !submit ?
+                                <form onSubmit={handleSubmit} className='form-reg flex flex-col justify-center gap-[6%] items-center w-[800px] h-[100%] box-border px-[20px]' action="http://localhost:3000/auth/register" method='post'>
+                                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Register</h1>
+                                    <div className='flex justify-center items-center gap-[8%] w-full'>
+                                        <label htmlFor="first-name">
+                                            <span className='text-[#000]'>First Name</span>
+                                            <input type="text" id="first-name" name="first-name" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                        </label>
+                                        <label htmlFor="last-name">
+                                            <span className='text-[#000]'>Last Name</span>
+                                            <input type="text" id="last-name" name="last-name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                                        </label>
+                                    </div>
+                                    <div className='flex justify-center items-center gap-[8%] w-full'>
+                                        <label htmlFor="email">
+                                            <span className='text-[#000]'>Email</span>
+                                            <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        </label>
+                                        <label htmlFor="password">
+                                            <span className='text-[#000]'>Password</span>
+                                            <input type="password" id="password" name="password" placeholder="*****" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                                        </label>
+                                    </div>
+                                    <div className='flex justify-center gap-[0%] items-center w-[100%]'>
+                                        <label htmlFor="confirm-password">
+                                            <span className='text-[#000]'>Confirm Password</span>
+                                            <input type="password" id="confirm-password" name="confirm-password" placeholder="*****" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                                        </label>
+                                        <label htmlFor="options">
+                                            <span className='text-[#000]'>Role</span>
+                                            <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
+                                                value={role}
+                                                onChange={(e) => setRole(e.target.value)}
+                                            >
+                                                <option value="" disabled>Select Role</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Student">Student</option>
+                                                <option value="Instructor">Instructor</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <button type="submit" className='btn-opt absolute right-[70px] bottom-[40px] text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px]'
+                                        onClick={() => setData({
+                                            first_name: firstName,
+                                            last_name: lastName,
+                                            email: email,
+                                            role: role,
+                                            password: password,
+                                            confirm_password: confirmPassword,
+                                            path: 'register',
+                                            branch: 'admins'
+                                        })
+                                        }
                                     >
-                                        <option value="" disabled>Select Role</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Student">Student</option>
-                                        <option value="Instructor">Instructor</option>
-                                    </select>
-                                </label>
-                            </div>
-                            <button type="submit" className='btn-opt absolute right-[70px] bottom-[40px] text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px]'
-                                onClick={() => setData({
-                                    first_name: firstName,
-                                    last_name: lastName,
-                                    email: email,
-                                    role: role,
-                                    password: password,
-                                    confirm_password: confirmPassword,
-                                    path: 'register',
-                                    branch: 'admins'
-                                })
-                                }
-                            >
-                                Register
-                            </button>
-                        </form>
+                                        Register
+                                    </button>
+                                </form>
+                                :
+                                handleRole()
+                        }
                     </div>
                 </section>
             </section>
