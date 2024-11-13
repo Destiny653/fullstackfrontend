@@ -59,15 +59,15 @@ export default function Page() {
     //         [name]:value
     //     })
     // }
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
 
-    //  if(typeof window !== 'undefined'){
-    //     !window.localStorage.getItem('token')?  window.location.href = '/' : ''
-    //  }
+    localdata.token ? window.location.href = '/' : ''
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-       typeof window !== 'undefined' && window.localStorage.setItem('regemail', email)
+
+
 
         console.log('Data', data);
         console.log('Info log', {
@@ -86,16 +86,15 @@ export default function Page() {
                 body: JSON.stringify(data)
             })
 
-            const request = await response.json()
-            console.log(request.user._id);
-            
+            const request = await response.json() 
+
 
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 if (role == "Student") {
-                  typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
+                    typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
                     navigation.push('/dashboard/student')
                 }
                 if (role == "Instructor") {

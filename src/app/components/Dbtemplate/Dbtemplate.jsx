@@ -102,7 +102,7 @@ export function Dbnavigation() {
           <span className='absolute bg-[green] px-[5px] text-[10px] py-[0] rounded-full top-[-1px] right-[-10]'>3</span>
         </div>
         <div className='flex justify-center items-center gap-[5px]'>
-          <section className='text-[#000] w-[40px] h-[40px] flex items-center justify-center font-[600] text-[20px] rounded-full bg-[#fff]'> 
+          <section className=' text-[#2196f3] w-[40px] h-[40px] flex items-center justify-center font-[600] text-[20px] rounded-full bg-[#fff]'> 
             <span>{data?.name.split("")[0].toUpperCase()}</span>
           </section>
           <section className='flex flex-col'>
