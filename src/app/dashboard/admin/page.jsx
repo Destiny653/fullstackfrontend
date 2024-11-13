@@ -22,10 +22,10 @@ export default function Page() {
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
 
-        // if(typeof window !== 'undefined'){
-        //     const localdata =  JSON.parse(localStorage.getItem('data'))
-        //     !localdata.token && navigation.push('/')
-        // } 
+        if(typeof window !== 'undefined'){
+            const localdata =  JSON.parse(localStorage.getItem('data'))
+            !localdata.token && navigation.push('/')
+        } 
 
 
     const handleSubmit = async (e) => {
@@ -58,11 +58,11 @@ export default function Page() {
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
                 if (role == "Student") {
-                    typeof window !== 'undefined' && window.localStorage.setItem('studentId', request.user._id)
+                    typeof window !== 'undefined' && localStorage.setItem('studentId', request.user._id)
                     navigation.push('/dashboard/student')
                 }
                 if (role == "Instructor") {
-                    typeof window !== 'undefined' && window.localStorage.setItem('instructorId', request.user._id)
+                    typeof window !== 'undefined' && localStorage.setItem('instructorId', request.user._id)
                     navigation.push('/dashboard/department')
                 }
                 alert(request.message);
