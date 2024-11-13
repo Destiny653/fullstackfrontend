@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
     let levelId;
     if (typeof window !== 'undefined') {
-        !window.localStorage.getItem('token') ? window.location.href = '/' : ''
         levelId = window.localStorage.getItem('levelId')
     }
 
@@ -18,10 +17,13 @@ export default function Page() {
     const [duration, setDuration] = useState('');
     const navigation = useRouter()
 
-    if(!levelId){
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
+    
+    if (!levelId) {
         navigation.push('/dashboard/level')
     }
- 
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

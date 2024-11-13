@@ -8,20 +8,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
-      
+
     const [data, setData] = useState({});
     const [department, setDepartment] = useState({})
     const navigation = useRouter()
 
 
-    if (typeof window !== 'undefined') {
-        !window.localStorage.getItem('token') ? window.location.href = '/' : ''
-    }
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        console.log('Data', data); 
+        console.log('Data', data);
 
         try {
             const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path, {
@@ -38,9 +37,9 @@ export default function Page() {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                alert(request.message); 
-                if(typeof window !== 'undefined'){
-                   window.localStorage.setItem("departmentId", request.data._id)
+                alert(request.message);
+                if (typeof window !== 'undefined') {
+                    window.localStorage.setItem("departmentId", request.data._id)
                 }
                 navigation.push('/dashboard/level')
             }
@@ -52,7 +51,7 @@ export default function Page() {
         }
     }
 
- 
+
     return (
         <div className='flex w-full h-[100vh]'>
             <section className='w-[17%] bg-[#ffffff57]'>
@@ -85,7 +84,7 @@ export default function Page() {
                             </section>
                             <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] '>
                                 <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Department</h1>
-                               
+
                                 <label htmlFor="options">
                                     <span className='text-[#000]'>Department</span>
                                     <select className='text-[#000] outline-none py-[9px] border-[1px] px-[20px] rounded-[10px] w-[350px]' name="role" id="role"
@@ -101,7 +100,7 @@ export default function Page() {
                                 </label>
                                 <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
                                     onClick={() => setData({
-                                        department: department, 
+                                        department: department,
                                         branch: 'departments',
                                         path: 'create'
                                     })}

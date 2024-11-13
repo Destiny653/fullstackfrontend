@@ -21,6 +21,10 @@ export default function Page() {
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
+
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         // window.localStorage.setItem('regemail', email)

@@ -21,9 +21,12 @@ export default function Page() {
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
+
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // window.localStorage.setItem('regemail', email)
 
         console.log('Data', data);
         console.log('Info log', {
@@ -47,10 +50,10 @@ export default function Page() {
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
-            } else {  
-             
+            } else {
+
                 alert(request.message);
-                    navigation.push('/dashboard/department')
+                navigation.push('/dashboard/department')
             }
 
         } catch (error) {

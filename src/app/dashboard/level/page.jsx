@@ -14,21 +14,23 @@ export default function Page() {
     const [level, setLevel] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [submit, setSubmit] = useState(false); 
+    const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
-    const navigation = useRouter() 
+    const navigation = useRouter()
 
     const department = typeof window !== 'undefined' && window.localStorage.getItem('departmentId')
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
 
-    console.log( 'DI', department, instructor);
-    
+    console.log('DI', department, instructor);
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
 
-    if(!department){
+
+    if (!department) {
         navigation.push('/dashboard/department')
     }
 
-    if(!instructor){
+    if (!instructor) {
         navigation.push('/dashboard/instructor')
     }
 
@@ -49,12 +51,12 @@ export default function Page() {
 
             const request = await response.json()
 
-            
+
             if (!response.ok) {
                 console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
-            } else { 
-                typeof window !== "undefined" &&  window.localStorage.setItem('levelId', request.data._id)  
+            } else {
+                typeof window !== "undefined" && window.localStorage.setItem('levelId', request.data._id)
                 alert(request.message);
                 navigation.push('/dashboard/course')
             }

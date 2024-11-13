@@ -61,7 +61,7 @@ export default function Page() {
     // }
     const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
 
-    localdata.token ? window.location.href = '/' : ''
+    !localdata.token && navigation.push('/')
 
 
     const handleSubmit = async (e) => {

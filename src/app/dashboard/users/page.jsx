@@ -5,16 +5,16 @@ import { IoMdAdd } from "react-icons/io";
 import '../gentem.css';
 import Link from 'next/link';
 import { FaUserCircle } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
-    if(typeof window !== 'undefined'){
-        !window.localStorage.getItem('token')?  window.location.href = '/' : ''
-     }  
-
-
+    
     const [data, setData] = useState([])
     const [iduser, setIduser] = useState('')
+    const navigation = useRouter()
+    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
     // const dataUpdateU = {}
     // if(!dataUpdateU == {}){
     //     typeof window == 'undefined' && window.localStorage.setItem("dataUpdateU", JSON.stringify(dataUpdateU))

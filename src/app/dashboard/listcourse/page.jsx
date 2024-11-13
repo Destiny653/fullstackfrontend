@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import '../gentem.css';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
@@ -11,13 +12,13 @@ export default function Page() {
 
     const [data, setData] = useState([])
     const [iduser, setIduser] = useState('')
+    const navigation = useRouter()
 
 
     useEffect(() => {
 
-        if (typeof window !== 'undefined') {
-            !window.localStorage.getItem('token') ? window.location.href = '/' : ''
-        }
+        const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
+    !localdata.token && navigation.push('/')
 
         const fetchData = async () => {
             try {
