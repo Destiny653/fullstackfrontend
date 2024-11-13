@@ -13,8 +13,10 @@ export default function Page() {
     const [data, setData] = useState([])
     const [iduser, setIduser] = useState('')
     const navigation = useRouter()
-    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
+    if(typeof window !== 'undefined'){
+        const localdata =  JSON.parse(localStorage.getItem('data'))
+        !localdata.token && navigation.push('/')
+    } 
     // const dataUpdateU = {}
     // if(!dataUpdateU == {}){
     //     typeof window == 'undefined' && window.localStorage.setItem("dataUpdateU", JSON.stringify(dataUpdateU))

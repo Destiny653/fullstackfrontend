@@ -17,9 +17,10 @@ export default function Page() {
     const [duration, setDuration] = useState('');
     const navigation = useRouter()
 
-    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
-    
+    if(typeof window !== 'undefined'){
+        const localdata =  JSON.parse(localStorage.getItem('data'))
+        !localdata.token && navigation.push('/')
+    } 
     if (!levelId) {
         navigation.push('/dashboard/level')
     }

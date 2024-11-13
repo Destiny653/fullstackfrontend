@@ -22,10 +22,10 @@ export default function Page() {
     const instructor = typeof window !== 'undefined' && window.localStorage.getItem('instructorId')
 
     console.log('DI', department, instructor);
-    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
-
-
+    if(typeof window !== 'undefined'){
+        const localdata =  JSON.parse(localStorage.getItem('data'))
+        !localdata.token && navigation.push('/')
+    } 
     if (!department) {
         navigation.push('/dashboard/department')
     }

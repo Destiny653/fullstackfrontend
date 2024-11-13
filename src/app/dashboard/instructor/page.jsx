@@ -22,8 +22,10 @@ export default function Page() {
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
 
-    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
+    if(typeof window !== 'undefined'){
+        const localdata =  JSON.parse(localStorage.getItem('data'))
+        !localdata.token && navigation.push('/')
+    } 
 
     const handleSubmit = async (e) => {
         e.preventDefault();

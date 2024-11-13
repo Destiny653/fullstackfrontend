@@ -17,9 +17,10 @@ export default function Page() {
 
     useEffect(() => {
 
-        const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-    !localdata.token && navigation.push('/')
-
+        if(typeof window !== 'undefined'){
+            const localdata =  JSON.parse(localStorage.getItem('data'))
+            !localdata.token && navigation.push('/')
+        } 
         const fetchData = async () => {
             try {
                 const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/courses/get`)
