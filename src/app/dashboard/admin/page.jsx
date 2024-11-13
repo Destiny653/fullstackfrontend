@@ -21,47 +21,13 @@ export default function Page() {
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState('')
     const navigation = useRouter()
-    // const [register, setRegister] = useState({
-    //     first_name: '',
-    //     last_name: '',
-    //     email: '',
-    //     role: '',
-    //     password: '',
-    //     confirm_password: ''
-    // })
-    // const [admin, setAdmin] = useState({
-    //     tel: '',
-    //     email: ''
-    // })
-    // const [student, setStudent] = useState({
-    //     enrollement_date: '',
-    //     level: '',
-    //     email: ''
-    // })
-    // const [instructor, setInstructor] = useState({
-    //     department: '',
-    //     email: ''
-    // })
 
-
-    // const handleChange =(e)=>{
-    //     const {name,value} = e.target
-    //     setRegister({
-    //         ...register,
-    //         [name]: value
-    //     })
-    //     setStudent({
-    //         ...student,
-    //         [name]:value
-    //     })
-    //     setInstructor({
-    //         ...instructor,
-    //         [name]:value
-    //     })
-    // }
-    const localdata = JSON.parse(typeof window !== 'undefined' && localStorage.getItem('data'))
-
+    useEffect(() => {
+     
+    const localdata = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('data'))
     !localdata.token && navigation.push('/')
+
+    }),[]
 
 
     const handleSubmit = async (e) => {
