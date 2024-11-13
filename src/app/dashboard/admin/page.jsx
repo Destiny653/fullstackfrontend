@@ -25,9 +25,9 @@ export default function Page() {
 
     useEffect(() => {
         setIsClient(true)
-        const localdata = localStorage.getItem('data')
+        const localdata = typeof window !== 'undefined' && localStorage.getItem('data')
         !localdata.token && navigation.push('/')
-    })
+    },[])
 
 
     const handleSubmit = async (e) => {
