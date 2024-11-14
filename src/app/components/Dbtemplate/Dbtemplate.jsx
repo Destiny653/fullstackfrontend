@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 import React from 'react';
 import './template.css'
@@ -14,8 +15,11 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoSearchSharp } from "react-icons/io5";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export function Dbtemplate() {
+
+  const router = useRouter()
 
   return (
     <div className='flex flex-col gap-[32px] relative h-[100%] box-border  py-[10px]'>
@@ -72,7 +76,8 @@ export function Dbtemplate() {
       </ul>
       <button className='btn-nav flex items-center justify-center gap-[5px] bg-[#2196f3] text-[#fff] rounded-[15px] px-[24px] py-[8px] absolute bottom-[20px] w-[150px]'
         onClick={() => {
-          window.localStorage.removeItem('data')
+          window.localStorage.removeItem('data');
+          router.replace(router.asPath);
         }}
       >
         <RiLogoutCircleRLine className='text-[#fff] text-center' />
