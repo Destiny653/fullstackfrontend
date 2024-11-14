@@ -57,7 +57,7 @@ export default function Page() {
     useEffect(() => { 
         if (typeof window !== 'undefined') {
           setIsClient(true);
-          const localdata = window.localStorage.getItem('data'); 
+          const localdata = JSON.parse(window.localStorage.getItem('data')); 
           if (!localdata?.token) {
             navigation.push('/');
           }
