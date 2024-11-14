@@ -103,7 +103,7 @@ export function Dbnavigation() {
         </div>
         <div className='flex justify-center items-center gap-[5px]'>
           <section className=' text-[#2196f3] w-[40px] h-[40px] flex items-center justify-center font-[600] text-[20px] rounded-full bg-[#fff]'> 
-            <span>{data?.name.split("")[0].toUpperCase()}</span>
+            <span>{data?.name?.split("")[0].toUpperCase()}</span>
           </section>
           <section className='flex flex-col'>
             <strong>{data?.name}</strong>
