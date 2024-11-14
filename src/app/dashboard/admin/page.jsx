@@ -56,19 +56,19 @@ export default function Page() {
 
     useEffect(() => {
         setIsClient(true)
-        const localdata = typeof window !== 'undefined' && localStorage.getItem('data')
+        const localdata = typeof window !== 'undefined' && window.localStorage.getItem('data')
         !localdata.token && navigation.push('/')
 
         function setServerSide(){
 
             if (role === "Student" && isClient) { 
                 if (typeof window !== 'undefined') {
-                    localStorage.setItem('studentId',  carry);
+                    window.localStorage.setItem('studentId',  carry);
                     navigation.push('/dashboard/student');
                 }}
             if (role === "Instructor" && isClient) { 
                 if (typeof window !== 'undefined') {
-                    localStorage.setItem('instructorId',  carry)
+                    window.localStorage.setItem('instructorId',  carry)
                     navigation.push('/dashboard/department')
                 }}
         }
