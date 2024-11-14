@@ -20,7 +20,7 @@ export default function Page() {
         e.preventDefault()
 
         try {
-            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/auth/` + data.path, {
+            const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/admins/` + data.path, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,8 +39,8 @@ export default function Page() {
                 window.localStorage.setItem('otp', request.otp.code)
                 setEmail('')
                 setValidate(true)
-                if(confirmPassword && response.ok){
-                    window.location.href = 'https://dashboard-m2bd.onrender.com/dashboard/login'
+                if(confirmPassword && response.ok && typeof window !== 'undefined'){
+                   window.location.href = 'https://dashboard-m2bd.onrender.com/dashboard/login'
                 }
             }
         } catch (error) {
