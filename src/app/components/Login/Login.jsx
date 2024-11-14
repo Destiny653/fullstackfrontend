@@ -86,6 +86,20 @@ export default function Login() {
                             <Dbnavigation />
                             <section className='box-border px-[30px] flex justify-between items-center'>
                                 <h2 className='text-[#2196f3] font-[600] text-[24px]'>Adim Dashboard</h2>
+                                <div className='flex gap-[20px] justify-evenly'>
+                                    <Link href={'/dashboard/admin'}>
+                                        <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
+                                            <IoMdAdd size={20} />
+                                            Add new user
+                                        </button>
+                                    </Link>
+                                    <Link href={'/dashboard/course'}>
+                                        <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
+                                            <IoMdAdd size={20} />
+                                            Add new Course
+                                        </button>
+                                    </Link>
+                                </div>
                             </section>
                             <section className='flex w-full flex-col justify-center items-center h-[100vh] box-border p-[px]'>
                                 <div className='flex justify-evenly items-center relative bg-[#fff] h-[500px] w-[900px] rounded-[15px] box-border py-[30px]'>
