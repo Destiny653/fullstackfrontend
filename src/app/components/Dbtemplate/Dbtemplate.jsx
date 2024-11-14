@@ -84,7 +84,7 @@ export function Dbtemplate() {
 
 export function Dbnavigation() {
 
-  const data = JSON.parse(localStorage.getItem('data'))
+  const data = JSON.parse(typeof window !== 'undefined' && window.localStorage.getItem('data'))
 
   return (
     <div className='flex justify-evenly items-center mt-[15px]'>
