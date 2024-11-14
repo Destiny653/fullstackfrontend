@@ -137,7 +137,7 @@ export default function Page() {
                                         <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </label>
                                     <Link href={'/'}>
-                                        <button className='absolute bottom-[60px] left-[30px]'> 
+                                        <button className='text-[#000] absolute bottom-[60px] left-[30px]'> 
                                             Back
                                         </button>
                                     </Link>
