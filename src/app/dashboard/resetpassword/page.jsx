@@ -137,8 +137,8 @@ export default function Page() {
                                         <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </label>
                                     <Link href={'/'}>
-                                        <button className='absolute bottom-[60px] left-[30px]'>
-                                            <img className='w-[30px] h-[30px]' src={'/images/arrow-left.png'} alt='back' />
+                                        <button className='absolute bottom-[60px] left-[30px]'> 
+                                            Back
                                         </button>
                                     </Link>
                                     <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
