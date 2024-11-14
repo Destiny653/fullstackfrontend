@@ -54,30 +54,27 @@ export default function Page() {
         }
     }
 
-    useEffect(() => {
-        setIsClient(true)
-        const localdata = typeof window !== 'undefined' && window.localStorage.getItem('data')
-        !localdata.token && navigation.push('/')
-
-        function setServerSide(){
-
-            if (role === "Student" && isClient) { 
-                if (typeof window !== 'undefined') {
-                    window.localStorage.setItem('studentId',  carry);
-                    navigation.push('/dashboard/student');
-                }}
-            if (role === "Instructor" && isClient) { 
-                if (typeof window !== 'undefined') {
-                    window.localStorage.setItem('instructorId',  carry)
-                    navigation.push('/dashboard/department')
-                }}
+    useEffect(() => { 
+        if (typeof window !== 'undefined') {
+          setIsClient(true);
+          const localdata = window.localStorage.getItem('data'); 
+          if (!localdata?.token) {
+            navigation.push('/');
+          }
         }
-
-        if(submit){
-            setServerSide()
+      }, [navigation]);
+    
+      useEffect(() => { 
+        if (isClient && submit) {
+          if (role === "Student") {
+            window.localStorage.setItem('studentId', carry);
+            navigation.push('/dashboard/student');
+          } else if (role === "Instructor") {
+            window.localStorage.setItem('instructorId', carry);
+            navigation.push('/dashboard/department');
+          }
         }
-
-    },[])
+      }, [isClient, role, carry, submit]);
 
 
     return (
