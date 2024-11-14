@@ -19,27 +19,12 @@ export default function Page() {
     const [enrollementDate, setEnrollementDate] = useState('');
     const [submit, setSubmit] = useState(false);
     const [data, setData] = useState({});
-    const [admin, setAdmin] = useState('')
+    const [carry, setCarrry] = useState(null)
     const [isClient, setIsClient] = useState(false);
     const navigation = useRouter()
 
-    useEffect(() => {
-        setIsClient(true)
-        const localdata = typeof window !== 'undefined' && localStorage.getItem('data')
-        !localdata.token && navigation.push('/')
-    },[])
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log('Data', data);
-        console.log('Info log', {
-            path: data.path,
-            branch: data.branch,
-            data: data,
-            email: email,
-        });
 
         try {
             const response = await fetch(`https://fullstackbackend-1-3kv9.onrender.com/api/` + data.branch + '/' + data.path, {
@@ -54,23 +39,10 @@ export default function Page() {
 
 
             if (!response.ok) {
-                console.log('Error occurred while registering, error: ' + request.message)
                 alert('Error occurred while registering, error: ' + request.message);
             } else {
-                if (role === "Student" && isClient) {
-                    // Ensure window is defined and safely set localStorage item
-                    if (typeof window !== 'undefined') {
-                        localStorage.setItem('studentId', request.user._id);
-                        navigation.push('/dashboard/student');
-                    }
-                }
-                if (role === "Instructor" && isClient) {
-                    // Ensure window is defined and safely set localStorage item
-                    if (typeof window !== 'undefined') {
-                        localStorage.setItem('instructorId', request.user._id)
-                        navigation.push('/dashboard/department')
-                    }
-                }
+                setCarrry(request.user._id)
+                setSubmit(true)
                 alert(request.message);
 
             }
@@ -81,6 +53,31 @@ export default function Page() {
 
         }
     }
+
+    useEffect(() => {
+        setIsClient(true)
+        const localdata = typeof window !== 'undefined' && localStorage.getItem('data')
+        !localdata.token && navigation.push('/')
+
+        function setServerSide(){
+
+            if (role === "Student" && isClient) { 
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('studentId',  carry);
+                    navigation.push('/dashboard/student');
+                }}
+            if (role === "Instructor" && isClient) { 
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('instructorId',  carry)
+                    navigation.push('/dashboard/department')
+                }}
+        }
+
+        if(submit){
+            setServerSide()
+        }
+
+    },[])
 
 
     return (
