@@ -74,7 +74,7 @@ export function Dbtemplate() {
       </ul>
       <button className='btn-nav flex items-center justify-center gap-[5px] bg-[#2196f3] text-[#fff] rounded-[15px] px-[24px] py-[8px] absolute bottom-[20px] w-[150px]'
         onClick={() => {
-         typeof window !== 'undefined' && window.localStorage.removeItem('data'); 
+         typeof window !== 'undefined' && window.localStorage.clear(); 
          typeof window !== 'undefined' && window.location.reload();
 
         }}

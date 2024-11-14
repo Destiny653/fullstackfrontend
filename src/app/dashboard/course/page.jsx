@@ -46,6 +46,8 @@ export default function Page() {
                 alert('Failed to add course ' + request.message)
                 return;
             } else {
+                typeof window !== "undefined" && window.localStorage.removeItem('departmentId')
+                typeof window !== "undefined" && window.localStorage.removeItem('instructorId')
                 alert('Course added successfully')
                 setCourseTitle('')
                 navigation.push('/dashboard/listcourse')
