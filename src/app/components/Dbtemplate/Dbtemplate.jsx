@@ -72,7 +72,7 @@ export function Dbtemplate() {
       </ul>
       <button className='btn-nav flex items-center justify-center gap-[5px] bg-[#2196f3] text-[#fff] rounded-[15px] px-[24px] py-[8px] absolute bottom-[20px] w-[150px]'
         onClick={() => {
-          window.localStorage.removeItem('token')
+          window.localStorage.removeItem('data')
         }}
       >
         <RiLogoutCircleRLine className='text-[#fff] text-center' />
