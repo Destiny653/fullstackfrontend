@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import '../gentem.css';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
     const [email, setEmail] = useState('')
@@ -15,6 +16,7 @@ export default function Page() {
     const [otp, setOtp] = useState('')
     const [getOtp, setGetOtp] = useState('')
     const [data, setData] = useState({})
+    const navigation = useRouter()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -36,11 +38,15 @@ export default function Page() {
                 alert(request.message)
             } else {
                 alert(request.message)
+
+                if (data.path == "reset-password" && response.ok) {
+                    navigation.push('/')
+                }
                 window.localStorage.setItem('otp', request.otp.code)
                 setEmail('')
                 setValidate(true)
-                if(confirmPassword && response.ok && typeof window !== 'undefined'){
-                   window.location.href = 'https://dashboard-m2bd.onrender.com/dashboard/login'
+                if (confirmPassword && response.ok && typeof window !== 'undefined') {
+                    window.location.href = 'https://dashboard-m2bd.onrender.com/dashboard/login'
                 }
             }
         } catch (error) {
@@ -69,7 +75,7 @@ export default function Page() {
                             setData({
                                 password: password,
                                 confirmPassword: confirmPassword,
-                                code:window.localStorage.getItem('otp'),
+                                code: window.localStorage.getItem('otp'),
                                 path: 'reset-password'
                             })
                         }}
@@ -82,7 +88,7 @@ export default function Page() {
             )
         }
 
-        if (validate) { 
+        if (validate) {
             return (
 
                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
@@ -115,29 +121,8 @@ export default function Page() {
     }
 
     return (
-        <div className='flex w-full h-[100vh]'>
-            <section className='w-[17%] bg-[#ffffff57]'>
-                <Dbtemplate />
-            </section>
-            <section className='w-[83%] bg-black text-[#fff] flex flex-col gap-[10px]'>
-                <Dbnavigation />
-                <section className='box-border px-[30px] flex justify-between items-center'>
-                    <h2 className='text-[#2196f3] font-[600] text-[24px]'>Adim Dashboard</h2>
-                    <div className='flex gap-[20px] justify-evenly'>
-                        <Link href={'/dashboard/admin'}>
-                            <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
-                                <IoMdAdd size={20} />
-                                Add new user
-                            </button>
-                        </Link>
-                        <Link href={'/dashboard/course'}>
-                            <button className='btn-opt-nav text-[#000] bg-[#fffffff6] px-[20px] py-[6px] rounded-[20px]'>
-                                <IoMdAdd size={20} />
-                                Add new Course
-                            </button>
-                        </Link>
-                    </div>
-                </section>
+        <div className='flex w-full h-[100vh]'> 
+            <section className='w-[100%] bg-black text-[#fff] flex flex-col gap-[10px]'> 
                 <section className='flex w-full flex-col justify-center items-center  h-[100vh] box-border p-[px]'>
                     <div className='flex justify-center items-center relative bg-[#fff] h-[500px] w-[900px] rounded-[15px] box-border py-[30px]'>
                         <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
