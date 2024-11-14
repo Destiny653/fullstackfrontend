@@ -57,7 +57,7 @@ export default function Page() {
     useEffect(() => { 
         if (typeof window !== 'undefined') {
           setIsClient(true);
-          const localdata = window.localStorage.getItem('data'); 
+          const localdata =  typeof window !== 'undefined' && window.localStorage.getItem('data'); 
           if (!localdata?.token) {
             navigation.push('/');
           }
@@ -67,10 +67,10 @@ export default function Page() {
       useEffect(() => { 
         if (isClient && submit) {
           if (role === "Student") {
-            window.localStorage.setItem('studentId', carry);
+           typeof window !== 'undefined' && window.localStorage.setItem('studentId', carry);
             navigation.push('/dashboard/student');
           } else if (role === "Instructor") {
-            window.localStorage.setItem('instructorId', carry);
+            typeof window !== 'undefined' && window.localStorage.setItem('instructorId', carry);
             navigation.push('/dashboard/department');
           }
         }
