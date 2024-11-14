@@ -121,8 +121,8 @@ export default function Page() {
     }
 
     return (
-        <div className='flex w-full h-[100vh]'> 
-            <section className='w-[100%] bg-black text-[#fff] flex flex-col gap-[10px]'> 
+        <div className='flex w-full h-[100vh]'>
+            <section className='w-[100%] bg-black text-[#fff] flex flex-col gap-[10px]'>
                 <section className='flex w-full flex-col justify-center items-center  h-[100vh] box-border p-[px]'>
                     <div className='flex justify-center items-center relative bg-[#fff] h-[500px] w-[900px] rounded-[15px] box-border py-[30px]'>
                         <section className=' w-[50%] h-[300px] bg-[gray] rounded-[15px] overflow-hidden'>
@@ -131,11 +131,16 @@ export default function Page() {
                         {
                             !validate ?
                                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
-                                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Login</h1>
+                                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Verify Email</h1>
                                     <label htmlFor="email">
                                         <span className='text-[#000]'>Email</span>
                                         <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </label>
+                                    <Link href={'/'}>
+                                        <button className='absolute bottom-[60px] left-[30px]'>
+                                            <img className='w-[30px] h-[30px]' src={'/images/arrow-left.png'} alt='back' />
+                                        </button>
+                                    </Link>
                                     <button type="submit" className='btn-opt text-[#fff] bg-[#2196f3] px-[20px] py-[10px] rounded-[7px] absolute bottom-[60px] right-[30px]'
 
                                         onClick={() => {
