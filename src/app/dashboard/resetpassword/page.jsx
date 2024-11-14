@@ -61,7 +61,7 @@ export default function Page() {
             return (
 
                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
-                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Student Register</h1>
+                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Password Authentication</h1>
                     <label htmlFor="password">
                         <span className='text-[#000]'>Password</span>
                         <input type="password" id="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -92,7 +92,7 @@ export default function Page() {
             return (
 
                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
-                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Student Register</h1>
+                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>OTP Authentication</h1>
                     <div className='text-[#000]'>
                         <p>Input your otp code as seen below:</p>
                         <p className='py-[9px] font-[600] text-center'>{window.localStorage.getItem('otp')}</p>
@@ -131,7 +131,7 @@ export default function Page() {
                         {
                             !validate ?
                                 <form onSubmit={handleSubmit} className='form-reg w-[40%] flex flex-col justify-center items-center gap-[20px]  box-border px-[20px] ' action="http://localhost:3000/api/auth/student" method='post'>
-                                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Student Register</h1>
+                                    <h1 className='text-[#2196f3] text-[27px] font-[600] absolute top-[20px] left-[60px]'>Login</h1>
                                     <label htmlFor="email">
                                         <span className='text-[#000]'>Email</span>
                                         <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
