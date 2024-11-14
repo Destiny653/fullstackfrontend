@@ -54,27 +54,27 @@ export default function Page() {
         }
     }
 
-    useEffect(() => { 
-        if (typeof window !== 'undefined') {
-          setIsClient(true);
-          const localdata =  typeof window !== 'undefined' && window.localStorage.getItem('data'); 
-          if (!localdata?.token) {
-            navigation.push('/');
-          }
-        }
-      }, [navigation]);
+    // useEffect(() => { 
+    //     if (typeof window !== 'undefined') {
+    //       setIsClient(true);
+    //       const localdata =  typeof window !== 'undefined' && window.localStorage.getItem('data'); 
+    //       if (!localdata?.token) {
+    //         navigation.push('/');
+    //       }
+    //     }
+    //   }, [navigation]);
     
-      useEffect(() => { 
-        if (isClient && submit) {
-          if (role === "Student") {
-           typeof window !== 'undefined' && window.localStorage.setItem('studentId', carry);
-            navigation.push('/dashboard/student');
-          } else if (role === "Instructor") {
-            typeof window !== 'undefined' && window.localStorage.setItem('instructorId', carry);
-            navigation.push('/dashboard/department');
-          }
-        }
-      }, [isClient, role, carry, submit]);
+    //   useEffect(() => { 
+    //     if (isClient && submit) {
+    //       if (role === "Student") {
+    //        typeof window !== 'undefined' && window.localStorage.setItem('studentId', carry);
+    //         navigation.push('/dashboard/student');
+    //       } else if (role === "Instructor") {
+    //         typeof window !== 'undefined' && window.localStorage.setItem('instructorId', carry);
+    //         navigation.push('/dashboard/department');
+    //       }
+    //     }
+    //   }, [isClient, role, carry, submit]);
 
 
     return (
