@@ -63,7 +63,7 @@ export default function Page() {
 
         } catch (error) {
             console.error(error);
-            alert('Error occurred please provide the neccessary', error);
+            alert(error);
 
         }
     }
